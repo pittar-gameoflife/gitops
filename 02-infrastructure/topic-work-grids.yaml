@@ -1,0 +1,11 @@
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  labels:
+    strimzi.io/cluster: gol-cluster
+  name: work-grids
+  namespace: gameoflife
+spec:
+  partitions: 1
+  replicas: 1
+  topicName: work-grids

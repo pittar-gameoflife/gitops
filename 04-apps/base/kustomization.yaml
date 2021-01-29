@@ -1,0 +1,11 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - decisionmaker-deployment.yaml
+  - decisionmaker-svc.yaml
+  - supervisor-deployment.yaml
+  - supervisor-svc.yaml
+  - ui-deployment.yaml
+  - ui-svc.yaml
+  - ui-route.yaml

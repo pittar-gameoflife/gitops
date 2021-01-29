@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    alpha.image.policy.openshift.io/resolve-names: '*'
+    app.openshift.io/connects-to: '[{"apiVersion":"apps/v1","kind":"StatefulSet","name":"gol-cluster-kafka"}]'
+    deployment.kubernetes.io/revision: "1"
+    image.openshift.io/triggers: '[{"from":{"kind":"ImageStreamTag","name":"gameoflife-ui:latest","namespace":"gameoflife"},"fieldPath":"spec.template.spec.containers[?(@.name==\"gameoflife-ui\")].image","pause":"false"}]'
+    openshift.io/generated-by: OpenShiftWebConsole
+  labels:
+    app: gameoflife-ui
+    app.kubernetes.io/component: gameoflife-ui
+    app.kubernetes.io/instance: gameoflife-ui
+    app.kubernetes.io/name: gameoflife-ui
+    app.kubernetes.io/part-of: gameoflife
+    app.openshift.io/runtime: quarkus
+    app.openshift.io/runtime-namespace: gameoflife
+    app.openshift.io/runtime-version: latest
+  name: gameoflife-ui
+  namespace: gameoflife
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: gameoflife-ui
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        openshift.io/generated-by: OpenShiftWebConsole
+      labels:
+        app: gameoflife-ui
+        deploymentconfig: gameoflife-ui
+    spec:
+      containers:
+      - image: gameoflife-ui:latest
+        imagePullPolicy: IfNotPresent
+        name: gameoflife-ui
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        - containerPort: 8443
+          protocol: TCP
+        - containerPort: 8778
+          protocol: TCP
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
