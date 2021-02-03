@@ -1,0 +1,8 @@
+kind: NetworkPolicy
+metadata:
+  name: deny-other-namespaces
+spec:
+  podSelector: {}
+  ingress:
+    - from:
+        - podSelector: {}

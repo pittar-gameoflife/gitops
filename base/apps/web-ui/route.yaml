@@ -1,0 +1,17 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  labels:
+    app: web-ui
+    app.kubernetes.io/component: web-ui
+    app.kubernetes.io/instance: web-ui
+    app.kubernetes.io/part-of: gameoflife
+  name: web-ui
+spec:
+  port:
+    targetPort: 8080-tcp
+  to:
+    kind: Service
+    name: web-ui
+    weight: 100
+  wildcardPolicy: None
