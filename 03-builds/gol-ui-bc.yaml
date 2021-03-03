@@ -27,7 +27,7 @@ spec:
   source:
     contextDir: /
     git:
-      uri: https://github.com/pittar-sandbox/gameoflife-ui
+      uri: https://github.com/pittar-gameoflife/web-ui
     type: Git
   strategy:
     sourceStrategy:
