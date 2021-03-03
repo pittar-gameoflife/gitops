@@ -3,19 +3,17 @@ kind: Route
 metadata:
   annotations:
     app.openshift.io/connects-to: '[{"apiVersion":"apps/v1","kind":"StatefulSet","name":"gol-cluster-kafka"}]'
-    openshift.io/host.generated: "true"
   labels:
-    app: gameoflife-ui
-    app.kubernetes.io/component: gameoflife-ui
-    app.kubernetes.io/instance: gameoflife-ui
+    app: web-ui
+    app.kubernetes.io/component: web-ui
+    app.kubernetes.io/instance: web-ui
     app.kubernetes.io/part-of: gameoflife
-  name: gameoflife-ui
-  namespace: gameoflife
+  name: web-ui
 spec:
   port:
     targetPort: 8080-tcp
   to:
     kind: Service
-    name: gameoflife-ui
+    name: web-ui
     weight: 100
   wildcardPolicy: None

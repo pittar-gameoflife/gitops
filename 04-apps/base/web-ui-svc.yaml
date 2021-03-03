@@ -3,16 +3,19 @@ kind: Service
 metadata:
   annotations:
     app.openshift.io/connects-to: '[{"apiVersion":"apps/v1","kind":"StatefulSet","name":"gol-cluster-kafka"}]'
-    openshift.io/generated-by: OpenShiftWebConsole
   labels:
-    app: gameoflife-ui
-    app.kubernetes.io/component: gameoflife-ui
-    app.kubernetes.io/instance: gameoflife-ui
+    app: web-ui
+    app.kubernetes.io/component: web-ui
+    app.kubernetes.io/instance: web-ui
     app.kubernetes.io/part-of: gameoflife
-  name: gameoflife-ui
+  name: web-ui
   namespace: gameoflife
 spec:
-  clusterIP: 172.30.224.110
+  selector:
+    app: web-ui
+    deploymentconfig: web-ui
+  sessionAffinity: None
+  type: ClusterIP
   ports:
   - name: 8080-tcp
     port: 8080
@@ -26,8 +29,3 @@ spec:
     port: 8778
     protocol: TCP
     targetPort: 8778
-  selector:
-    app: gameoflife-ui
-    deploymentconfig: gameoflife-ui
-  sessionAffinity: None
-  type: ClusterIP

@@ -3,16 +3,18 @@ kind: Service
 metadata:
   annotations:
     app.openshift.io/connects-to: '[{"apiVersion":"apps/v1","kind":"StatefulSet","name":"gol-cluster-kafka"}]'
-    openshift.io/generated-by: OpenShiftWebConsole
   labels:
-    app: gameoflife-decisionmaker
-    app.kubernetes.io/component: gameoflife-decisionmaker
-    app.kubernetes.io/instance: gameoflife-decisionmaker
+    app: decisions
+    app.kubernetes.io/component: decisions
+    app.kubernetes.io/instance: decisions
     app.kubernetes.io/part-of: gameoflife
-  name: gameoflife-decisionmaker
-  namespace: gameoflife
+  name: decisions
 spec:
-  clusterIP: 172.30.52.7
+  selector:
+    app: decisions
+    deploymentconfig: decisions
+  sessionAffinity: None
+  type: ClusterIP
   ports:
   - name: 8080-tcp
     port: 8080
@@ -26,8 +28,3 @@ spec:
     port: 8778
     protocol: TCP
     targetPort: 8778
-  selector:
-    app: gameoflife-decisionmaker
-    deploymentconfig: gameoflife-decisionmaker
-  sessionAffinity: None
-  type: ClusterIP

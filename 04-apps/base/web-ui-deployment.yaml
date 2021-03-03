@@ -4,27 +4,22 @@ metadata:
   annotations:
     alpha.image.policy.openshift.io/resolve-names: '*'
     app.openshift.io/connects-to: '[{"apiVersion":"apps/v1","kind":"StatefulSet","name":"gol-cluster-kafka"}]'
-    deployment.kubernetes.io/revision: "1"
-    image.openshift.io/triggers: '[{"from":{"kind":"ImageStreamTag","name":"gameoflife-ui:latest","namespace":"gameoflife"},"fieldPath":"spec.template.spec.containers[?(@.name==\"gameoflife-ui\")].image","pause":"false"}]'
-    openshift.io/generated-by: OpenShiftWebConsole
   labels:
-    app: gameoflife-ui
-    app.kubernetes.io/component: gameoflife-ui
-    app.kubernetes.io/instance: gameoflife-ui
-    app.kubernetes.io/name: gameoflife-ui
+    app: web-ui
+    app.kubernetes.io/component: web-ui
+    app.kubernetes.io/instance: web-ui
+    app.kubernetes.io/name: web-ui
     app.kubernetes.io/part-of: gameoflife
     app.openshift.io/runtime: quarkus
     app.openshift.io/runtime-namespace: gameoflife
-    app.openshift.io/runtime-version: latest
-  name: gameoflife-ui
-  namespace: gameoflife
+  name: web-ui
 spec:
   progressDeadlineSeconds: 600
   replicas: 1
   revisionHistoryLimit: 10
   selector:
     matchLabels:
-      app: gameoflife-ui
+      app: web-ui
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -32,16 +27,14 @@ spec:
     type: RollingUpdate
   template:
     metadata:
-      annotations:
-        openshift.io/generated-by: OpenShiftWebConsole
       labels:
-        app: gameoflife-ui
-        deploymentconfig: gameoflife-ui
+        app: web-ui
+        deploymentconfig: web-ui
     spec:
       containers:
-      - image: gameoflife-ui:latest
+      - image: web-ui:latest
         imagePullPolicy: IfNotPresent
-        name: gameoflife-ui
+        name: web-ui
         ports:
         - containerPort: 8080
           protocol: TCP
