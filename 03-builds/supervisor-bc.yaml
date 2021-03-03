@@ -27,7 +27,7 @@ spec:
   source:
     contextDir: /
     git:
-      uri: https://github.com/pittar-sandbox/gameoflife-supervisor
+      uri: https://github.com/pittar-gameoflife/gameoflife-supervisor
     type: Git
   strategy:
     sourceStrategy:
