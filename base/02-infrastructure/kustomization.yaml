@@ -1,0 +1,9 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - amq-streams-cluster.yaml
+  - topic-display-grids.yaml
+  - topic-life-answers.yaml
+  - topic-life-questions.yaml
+  - topic-work-grids.yaml

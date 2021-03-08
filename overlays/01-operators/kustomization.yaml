@@ -1,0 +1,9 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+# AMQ Streams and OpenShift Pipelines will deploy in "openshift-operators" namespace.
+namespace: openshift-operators
+
+# Base directory has the operators available.
+bases:
+  - ../../base/01-operators
