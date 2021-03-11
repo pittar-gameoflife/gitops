@@ -1,12 +1,12 @@
 apiVersion: tekton.dev/v1beta1
 kind: Pipeline
 metadata:
-  name: build-and-deploy
+  name: build-and-rollout
 spec:
   workspaces:
   - name: shared-workspace
   params:
-  - name: deployment-name
+  - name: app-name
     type: string
     description: name of the deployment to be patched
   - name: git-url
@@ -33,7 +33,7 @@ spec:
       value: "true"
     - name: revision
       value: $(params.git-revision)
-  - name: build
+  - name: mvn-build
     taskRef:
       name: maven
       kind: ClusterTask
@@ -41,10 +41,35 @@ spec:
       - fetch-repository 
     params:
       - name: GOALS
-        value: ["clean", "package"]
+        value: ["clean", "package", "-DskipTests"]
     workspaces:
       - name: source
-        subPath: decisions
         workspace: shared-workspace
       - name: maven-settings
         workspace: shared-workspace
+  - name: s2i-build
+    taskRef:
+      name: oc-binary-build
+      kind: Task
+    runAfter:
+      - mvn-build 
+    params:
+      - name: BUILD_NAME
+        value: "$(params.app-name)"
+      - name: BINARY_RELATIVE_PATH
+        value: "/target/app.jar"
+    workspaces:
+      - name: build-workspace
+        workspace: shared-workspace
+  - name: rollout-dev
+    taskRef:
+      name: oc-rollout-restart
+      kind: Task
+    runAfter:
+      - s2i-build
+    params:
+      - name: APP_NAME
+        value: "$(params.app-name)"
+      - name: NAMESPACE
+        value: "gameoflife"
+
