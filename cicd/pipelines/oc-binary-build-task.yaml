@@ -7,9 +7,9 @@ spec:
     - name: build-workspace
       description: Build workspace.
   params:
-    - name: BUILD_NAME
+    - name: build-name
       type: string
-    - name: BINARY_RELATIVE_PATH
+    - name: binary-relative-path
       type: string
   steps:
     - name: run-commands
@@ -21,4 +21,4 @@ spec:
         ls -la .
         echo "List target contents:"
         ls -l $(workspaces.build-workspace.path)/target
-        oc start-build $(params.BUILD_NAME) --from-file=$(workspaces.build-workspace.path)$(params.BINARY_RELATIVE_PATH) --follow
+        oc start-build $(params.build-name) --from-file=$(workspaces.build-workspace.path)$(params.binary-relative-path) --follow

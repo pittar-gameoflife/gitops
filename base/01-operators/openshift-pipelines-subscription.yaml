@@ -4,7 +4,6 @@ metadata:
   labels:
     operators.coreos.com/openshift-pipelines-operator-rh.openshift-operators: ""
   name: openshift-pipelines-operator-rh
-  namespace: openshift-operators
 spec:
   channel: stable
   installPlanApproval: Automatic

@@ -1,0 +1,8 @@
+kind: ResourceQuota
+apiVersion: v1
+metadata:
+  name: cpu-memory-requests
+spec:
+  hard:
+    requests.cpu: '2'
+    requests.memory: 4Gi

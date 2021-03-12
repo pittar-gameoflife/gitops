@@ -4,15 +4,15 @@ metadata:
   name: oc-rollout-restart
 spec:
   params:
-    - name: APP_NAME
+    - name: app-name
       type: string
-    - name: NAMESPACE
+    - name: namepace
       type: string
   steps:
     - name: run-commands
       image: quay.io/openshift/origin-cli:latest
       script: |
         #!/usr/bin/env bash
-        echo "Rolling out deployment $(params.APP_NAME)..."
-        oc rollout restart deployment $(params.APP_NAME) -n $(params.NAMESPACE)
-        oc rollout status deployment $(params.APP_NAME) -n $(params.NAMESPACE)
+        echo "Rolling out deployment $(params.app-name)..."
+        oc rollout restart deployment $(params.app-name) -n $(params.namespace)
+        oc rollout status deployment $(params.app-name) -n $(params.namespace)

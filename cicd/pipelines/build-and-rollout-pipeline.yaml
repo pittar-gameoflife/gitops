@@ -54,9 +54,9 @@ spec:
     runAfter:
       - mvn-build 
     params:
-      - name: BUILD_NAME
+      - name: build-name
         value: "$(params.app-name)"
-      - name: BINARY_RELATIVE_PATH
+      - name: binary-relative-path
         value: "/target/app.jar"
     workspaces:
       - name: build-workspace
@@ -68,8 +68,8 @@ spec:
     runAfter:
       - s2i-build
     params:
-      - name: APP_NAME
+      - name: app-name
         value: "$(params.app-name)"
-      - name: NAMESPACE
+      - name: namespace
         value: "gameoflife"
 
