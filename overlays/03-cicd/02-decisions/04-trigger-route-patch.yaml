@@ -1,7 +1,3 @@
 - op: replace
   path: /spec/to/name
   value: 'el-decisions-listener'
-#- op: add
-#  path: /metadata/labels/-
-#  value:
-#    eventlistener: decisions-listener

@@ -13,11 +13,6 @@ bases:
   - ../../../base/04-cicd/01-builds-images
   - ../../../base/04-cicd/03-pipelines
 
-# Include Tekton trigger for this pipeline.
-resources:
-  - 01-trigger.yaml
-  - 02-eventlistener.yaml
-
 # Common labels to add to all resources.
 commonLabels:
   app: web-ui
@@ -37,10 +32,3 @@ patchesJson6902:
       kind: BuildConfig
       name: binary-build
     path: 03-buildconfig-patch.yaml
-  # Patch Tekton EventListener Route to reference correct service.
-  - target:
-      group: route.openshift.io
-      version: v1
-      kind: Route
-      name: el-listener
-    path: 04-trigger-route-patch.yaml

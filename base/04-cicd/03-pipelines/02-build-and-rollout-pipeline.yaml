@@ -62,23 +62,41 @@ spec:
     workspaces:
       - name: build-workspace
         workspace: shared-workspace
+  - name: tag-dev
+    taskRef:
+      name: openshift-client
+      kind: ClusterTask
+    runAfter:
+      - s2i-build
+    params:
+      - name: ARGS
+        value: ["tag", "$(params.app-name)-is:latest", "$(params.app-name)-is:dev"]
   - name: rollout-dev
     taskRef:
       name: oc-rollout-restart
       kind: Task
     runAfter:
-      - s2i-build
+      - tag-dev
     params:
       - name: app-name
         value: "$(params.app-name)"
       - name: namespace
         value: "dev-gameoflife"
+  - name: tag-test
+    taskRef:
+      name: openshift-client
+      kind: ClusterTask
+    runAfter:
+      - rollout-dev
+    params:
+      - name: ARGS
+        value: ["tag", "$(params.app-name)-is:dev", "$(params.app-name)-is:test"]
   - name: rollout-test
     taskRef:
       name: oc-rollout-restart
       kind: Task
     runAfter:
-      - rollout-dev
+      - tag-test
     params:
       - name: app-name
         value: "$(params.app-name)"

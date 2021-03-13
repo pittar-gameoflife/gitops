@@ -1,7 +1,7 @@
 apiVersion: triggers.tekton.dev/v1alpha1
 kind: TriggerTemplate
 metadata:
-  name: trigger
+  name: build-trigger
 spec:
   params:
   - name: git-repo-url
