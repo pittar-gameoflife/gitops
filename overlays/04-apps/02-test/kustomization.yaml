@@ -11,3 +11,14 @@ bases:
 
 resources:
   - developer-rolebinding.yaml
+
+images:
+  - name: decisions
+    newName: image-registry.openshift-image-registry.svc:5000/cicd-gameoflife/decisions-is
+    newTag: latest
+  - name: supervisor
+    newName: image-registry.openshift-image-registry.svc:5000/cicd-gameoflife/supervisor-is
+    newTag: latest
+  - name: web-ui
+    newName: image-registry.openshift-image-registry.svc:5000/cicd-gameoflife/web-ui-is
+    newTag: latest
