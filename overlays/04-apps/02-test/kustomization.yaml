@@ -1,0 +1,13 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: test-gameoflife
+
+bases:
+  - ../../../base/03-infrastructure
+  - ../../../base/05-apps/01-decisions
+  - ../../../base/05-apps/02-supervisor
+  - ../../../base/05-apps/03-web-ui
+
+resources:
+  - developer-rolebinding.yaml

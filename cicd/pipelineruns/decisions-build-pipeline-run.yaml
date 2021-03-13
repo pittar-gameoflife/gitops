@@ -4,7 +4,7 @@ metadata:
   generateName: decisions-build-and-rollout-run-
 spec:
   pipelineRef:
-    name: build-and-rollout
+    name: decisions-build-and-rollout
   params:
     - name: "git-url"
       value: "https://github.com/pittar-gameoflife/decisions.git"
@@ -15,4 +15,7 @@ spec:
   workspaces:
     - name: shared-workspace
       persistentVolumeClaim:
-        claimName: workspace
+        claimName: decisions-workspace
+    - name: maven-settings-cm
+      configMap:
+        name: maven-settings-cm

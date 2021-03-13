@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  annotations:
+    openshift.io/description: TEST - Game of Life
+    openshift.io/display-name: TEST - Game of Life
+  name: test-gameoflife

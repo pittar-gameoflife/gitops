@@ -3,4 +3,7 @@ kind: Kustomization
 
 # Base directory has the operators available.
 bases:
-  - ../../base/02-infrastructure
+  - 01-cicd
+  - 02-dev
+  - 03-test
+

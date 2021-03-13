@@ -4,22 +4,21 @@ metadata:
   annotations:
     alpha.image.policy.openshift.io/resolve-names: '*'
     app.openshift.io/connects-to: '[{"apiVersion":"apps/v1","kind":"StatefulSet","name":"gol-cluster-kafka"}]'
-    deployment.kubernetes.io/revision: "1"
   labels:
-    app: web-ui
-    app.kubernetes.io/component: web-ui
-    app.kubernetes.io/instance: web-ui
-    app.kubernetes.io/name: web-ui
+    app: decisions
+    app.kubernetes.io/component: decisions
+    app.kubernetes.io/instance: decisions
+    app.kubernetes.io/name: decisions
     app.kubernetes.io/part-of: gameoflife
     app.openshift.io/runtime: quarkus
-  name: web-ui
+  name: decisions
 spec:
   progressDeadlineSeconds: 600
   replicas: 1
   revisionHistoryLimit: 10
   selector:
     matchLabels:
-      app: web-ui
+      app: decisions
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -28,13 +27,13 @@ spec:
   template:
     metadata:
       labels:
-        app: web-ui
-        deploymentconfig: web-ui
+        app: decisions
+        deploymentconfig: decisions
     spec:
       containers:
-      - image: web-ui:latest
-        imagePullPolicy: IfNotPresent
-        name: web-ui
+      - image: decisions:latest
+        imagePullPolicy: Always
+        name: decisions
         ports:
         - containerPort: 8080
           protocol: TCP
@@ -42,7 +41,13 @@ spec:
           protocol: TCP
         - containerPort: 8778
           protocol: TCP
-        resources: {}
+        resources:
+          requests:
+            memory: "500Mi"
+            cpu: "250m"
+          limits:
+            memory: "500Mi"
+            cpu: 1
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
       dnsPolicy: ClusterFirst
