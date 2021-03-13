@@ -13,6 +13,7 @@ generatorOptions:
   labels:
     app: maven-settings
   disableNameSuffixHash: true
+
 configMapGenerator:
   - name: maven-settings-cm
     files:

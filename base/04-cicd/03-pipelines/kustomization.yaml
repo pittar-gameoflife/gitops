@@ -3,3 +3,8 @@ kind: Kustomization
 resources:
   - 01-workspace-pvc.yaml
   - 02-build-and-rollout-pipeline.yaml
+  - 03-triggerbinding.yaml
+  - 04-triggertemplate.yaml
+  - 05-trigger-route.yaml
+#  - 05-trigger.yaml
+#  - 06-eventlistener.yaml

@@ -1,20 +1,46 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
+# Build related artifacts go in the cicd namespace.
 namespace: cicd-gameoflife
 
+# Prefix all names with "supervisor-".
+namePrefix:
+  supervisor-
+
+# Use common BuildConfigs, ImageStreams, and Tekton resources.
 bases:
   - ../../../base/04-cicd/01-builds-images
   - ../../../base/04-cicd/03-pipelines
 
-namePrefix:
-  supervisor-
+# Include Tekton trigger for this pipeline.
+resources:
+  - 01-trigger.yaml
+  - 02-eventlistener.yaml
 
+# Common labels to add to all resources.
 commonLabels:
   app: supervisor
   app.kubernetes.io/component: supervisor
   app.kubernetes.io/instance: supervisor
 
+# Common annotations to add to all resources.
 commonAnnotations:
   app.openshift.io/vcs-ref: master
   app.openshift.io/vcs-uri: https://github.com/pittar-gameoflife/supervisor
+
+patchesJson6902:
+  # Patch the BuildConfig to output to the correct ImageStream.
+  - target:
+      group: build.openshift.io
+      version: v1
+      kind: BuildConfig
+      name: binary-build
+    path: 03-buildconfig-patch.yaml
+  # Patch Tekton EventListener Route to reference correct service.
+  - target:
+      group: route.openshift.io
+      version: v1
+      kind: Route
+      name: el-listener
+    path: 04-trigger-route-patch.yaml

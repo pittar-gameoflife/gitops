@@ -1,0 +1,10 @@
+apiVersion: triggers.tekton.dev/v1alpha1
+kind: Trigger
+metadata:
+  name: trigger
+spec:
+  serviceAccountName: pipeline
+  bindings:
+    - ref: web-ui-trigger
+  template:
+     name: web-ui-trigger
