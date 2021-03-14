@@ -9,7 +9,7 @@
     name: "app-name"
     value: "decisions"
 - op: add
-  path: /spec/params/-
+  path: /spec/workspaces/-
   value:
     name: shared-workspace
     persistentVolumeClaim:
