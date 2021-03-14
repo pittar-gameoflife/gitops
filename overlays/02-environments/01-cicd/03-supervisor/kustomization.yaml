@@ -36,4 +36,4 @@ patchesJson6902:
       version: v1beta1
       kind: PipelineRun
       name: build-and-rollout
-    path: 01-buildconfig-patch.yaml
+    path: 01-pipelinerun-patch.yaml
