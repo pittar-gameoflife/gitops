@@ -29,4 +29,3 @@ spec:
         namespace: openshift
     type: Source
   successfulBuildsHistoryLimit: 5
-  triggers: []
