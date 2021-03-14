@@ -1,0 +1,20 @@
+kind: Application
+apiVersion: argoproj.io/v1alpha1
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "23"
+  name: gameoflife-test
+  namespace: argocd
+spec:
+  destination:
+    namespace: argocd
+    server: https://kubernetes.default.svc
+  project: gameoflife-test
+  source:
+    path: overlays/02-environments/03-test
+    repoURL: https://github.com/pittar-gameoflife/gitops.git
+    targetRevision: master
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: true

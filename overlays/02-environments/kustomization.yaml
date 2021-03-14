@@ -1,9 +1,0 @@
-apiVersion: kustomize.config.k8s.io/v1beta1
-kind: Kustomization
-
-# Base directory has the operators available.
-bases:
-  - 01-cicd
-  - 02-dev
-  - 03-test
-

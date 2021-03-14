@@ -12,7 +12,5 @@ spec:
     - name: run-commands
       image: quay.io/openshift/origin-cli:latest
       script: |
-        #!/usr/bin/env bash
-        echo "Rolling out deployment $(params.app-name)..."
         oc rollout restart deployment $(params.app-name) -n $(params.namespace)
         oc rollout status deployment $(params.app-name) -n $(params.namespace)

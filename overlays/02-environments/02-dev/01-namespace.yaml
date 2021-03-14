@@ -4,4 +4,4 @@ metadata:
   annotations:
     openshift.io/description: DEV - Game of Life
     openshift.io/display-name: DEV - Game of Life
-  name: dev-gameoflife
+  name: gameoflife-dev

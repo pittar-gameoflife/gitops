@@ -4,4 +4,4 @@ metadata:
   annotations:
     openshift.io/description: CI/CD - Game of Life
     openshift.io/display-name: CI/CD - Game of Life
-  name: cicd-gameoflife
+  name: gameoflife-cicd

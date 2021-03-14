@@ -3,10 +3,10 @@
   value:
     kind: ServiceAccount
     name: default
-    namespace: dev-gameoflife
+    namespace: gameoflife-dev
 - op: add
   path: /subjects/-
   value:
     kind: ServiceAccount
     name: default
-    namespace: test-gameoflife
+    namespace: gameoflife-test

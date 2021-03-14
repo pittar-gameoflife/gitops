@@ -1,12 +1,12 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  name: pipeline-admin
+  name: developer-view
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: admin
+  name: view
 subjects:
-- kind: ServiceAccount
-  name: pipeline
-  namespace: gameoflife-cicd
+  - apiGroup: rbac.authorization.k8s.io
+    kind: Group
+    name: developer
