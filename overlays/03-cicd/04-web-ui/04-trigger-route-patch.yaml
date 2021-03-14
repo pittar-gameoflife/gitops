@@ -1,7 +1,0 @@
-- op: replace
-  path: /spec/to/name
-  value: 'el-web-ui-listener'
-#- op: add
-#  path: /metadata/labels/-
-#  value:
-#    eventlistener: web-ui-listener

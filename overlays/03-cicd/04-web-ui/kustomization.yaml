@@ -31,4 +31,4 @@ patchesJson6902:
       version: v1
       kind: BuildConfig
       name: binary-build
-    path: 03-buildconfig-patch.yaml
+    path: 01-buildconfig-patch.yaml
