@@ -4,8 +4,8 @@ kind: Kustomization
 # Commont Tekton functionality.
 bases:
   - github.com/redhat-canada-gitops/catalog/nexus2/base?ref=master
-  - ../../../base/04-cicd/02-custom-tasks
-  - ../../../base/04-cicd/04-pipeline-trigger
+  - ../../../../base/04-cicd/02-custom-tasks
+  - ../../../../base/04-cicd/04-pipeline-trigger
 
 # Nexus secret (username and password).
 resources:
