@@ -2,6 +2,8 @@ kind: PipelineRun
 apiVersion: tekton.dev/v1beta1
 metadata:
   annotations:
+    argocd.argoproj.io/compare-options: IgnoreExtraneous
+    argocd.argoproj.io/sync-options: Prune=false
     argocd.argoproj.io/sync-wave: "43"
   name: build-and-rollout
 spec:
