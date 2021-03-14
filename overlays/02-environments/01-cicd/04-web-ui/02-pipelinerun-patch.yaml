@@ -1,3 +1,6 @@
+- op: replace
+  path: /spec/pipelineRef/name
+  value: 'web-ui-build-and-rollout'
 - op: add
   path: /spec/params/-
   value:

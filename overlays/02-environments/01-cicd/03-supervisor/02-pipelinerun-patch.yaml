@@ -1,3 +1,6 @@
+- op: replace
+  path: /spec/pipelineRef/name
+  value: 'supervisor-build-and-rollout'
 - op: add
   path: /spec/params/-
   value:
