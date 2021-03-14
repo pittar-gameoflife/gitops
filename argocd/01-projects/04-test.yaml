@@ -3,7 +3,7 @@ kind: AppProject
 apiVersion: argoproj.io/v1alpha1
 metadata:
   annotations:
-    argocd.argoproj.io/sync-wave: "13"
+    argocd.argoproj.io/sync-wave: "12"
   name: gameoflife-test
   namespace: argocd
 spec:
