@@ -1,0 +1,16 @@
+- op: add
+  path: /spec/params/-
+  value:
+    name: "git-url"
+    value: "https://github.com/pittar-gameoflife/supervisor.git"
+- op: add
+  path: /spec/params/-
+  value:
+    name: "app-name"
+    value: "supervisor"
+- op: add
+  path: /spec/params/-
+  value:
+    name: shared-workspace
+    persistentVolumeClaim:
+      claimName: supervisor-workspace

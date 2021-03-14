@@ -1,7 +1,8 @@
 apiVersion: build.openshift.io/v1
 kind: BuildConfig
 metadata:
-  annotations: {}
+  annotations:
+    argocd.argoproj.io/sync-wave: "41"
   labels:
     app.kubernetes.io/name: java
     app.kubernetes.io/part-of: gameoflife
