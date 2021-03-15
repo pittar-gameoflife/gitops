@@ -9,4 +9,4 @@ bases:
   - github.com/redhat-canada-gitops/catalog/nexus2/base?ref=master
 
 resources:
-  - namespace.yaml
+  - 01-namespace.yaml
