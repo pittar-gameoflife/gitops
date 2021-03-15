@@ -1,0 +1,10 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: argocd
+
+resources:
+  - 01-cicd.yaml
+  - 02-dev.yaml
+  - 03-test.yaml
+  - 99-first-build-init.yaml

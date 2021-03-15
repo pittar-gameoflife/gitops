@@ -7,9 +7,9 @@ spec:
   destination:
     namespace: argocd
     server: https://kubernetes.default.svc
-  project: bootstrap
+  project: bootstrap-gameoflife
   source:
-    path: argocd
+    path: argocd/02-gameoflife
     repoURL: https://github.com/pittar-gameoflife/gitops.git
     targetRevision: master
   syncPolicy:

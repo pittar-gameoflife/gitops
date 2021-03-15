@@ -1,0 +1,11 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+# All resources will be in test-gameoflife namespace.
+namespace: gameoflife-cicd
+
+# Include developer RoleBinding for the dev project.
+resources:
+  - 01-decisions-build-pipeline-run.yaml
+  - 02-supervisor-build-pipeline-run.yaml
+  - 03-web-ui-build-pipeline-run.yaml

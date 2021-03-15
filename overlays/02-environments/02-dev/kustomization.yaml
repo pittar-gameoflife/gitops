@@ -16,9 +16,6 @@ bases:
 resources:
   - 01-namespace.yaml
   - 02-developer-rolebinding.yaml
-  - 00-init-builds/decisions-build-pipeline-run.yaml
-  - 00-init-builds/supervisor-build-pipeline-run.yaml
-  - 00-init-builds/web-ui-build-pipeline-run.yaml
 
 # Use the "dev" floating image tags.
 images:
