@@ -1,16 +1,35 @@
-# Conway's Game of Life
+# Conway's Game of Life - GitOps Resources
 
-## Native Build
+## About This Repository
+
+This repository contains everything you need to spin up the infrastructure, builds and apps - either with `kubectl` or `oc`, or with Argo CD.
+
+## Using kubectl or oc
+
+If you don't have Argo CD installed in your cluster, you can spin up everything with a few commands:
+
 ```
-oc new-app quay.io/quarkus/ubi-quarkus-native-s2i:20.3-java11~https://github.com/pittar-sandbox/gameoflife-supervisor.git --name=gamoeoflife-supervisor-native
+oc apply -k overlays/01-cluster/01-operators
+oc apply -k overlays/01-cluster/01-cicd-tools
+
+# Wait for Nexus to deploy in the "cicd-tools" namespace.
+oc apply -k overlays/02-environments/01-cicd
+oc apply -k overlays/02-environments/02-dev
+oc apply -k overlays/02-environments/03-test
+
+# Kick off the initial buils.
+oc apply -k argocd/00-bootstrap/03-first-builds
 ```
 
-## Cluster build limits (RHPDS)
-
-RHPDS clusters have pre-configured build limits.  You will need to delete them if you want to run a native build.
+## Using Argo CD
 
 ```
-oc edit build.config.openshift.io/cluster
-```
+# First, setup core cluster infrastructure.
+oc apply -k argocd/00-bootstrap/01-cluster
 
-Then, change the `spec` to an empty object `{}`.
+# Wait for Nexus to be deployed in "cicd-tools" project, then:
+oc apply -k argocd/00-bootsrap/02-gameoflife
+
+# Once the "Pipelines" appear in gameofile-cicd, you can kick off first builds with:
+oc apply -k argocd/00-bootstrap/03-first-builds
+```
