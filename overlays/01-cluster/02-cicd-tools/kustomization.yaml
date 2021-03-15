@@ -7,3 +7,6 @@ namespace: cicd-tools
 # Base directory has the operators available.
 bases:
   - github.com/redhat-canada-gitops/catalog/nexus2/base?ref=master
+
+resources:
+  - namespace.yaml
