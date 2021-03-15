@@ -9,7 +9,7 @@ namePrefix:
 bases:
   - ../../../../base/04-cicd/01-builds-images
   - ../../../../base/04-cicd/03-pipelines
-  - ../../../../base/04-cicd/04-pipelineruns
+  # - ../../../../base/04-cicd/04-pipelineruns
 
 # Common labels to add to all resources.
 commonLabels:
@@ -30,10 +30,10 @@ patchesJson6902:
       kind: BuildConfig
       name: binary-build
     path: 01-buildconfig-patch.yaml
-  # Patch initial PipelineRun
-  - target:
-      group: tekton.dev
-      version: v1beta1
-      kind: PipelineRun
-      name: build-and-rollout
-    path: 02-pipelinerun-patch.yaml
+  # # Patch initial PipelineRun
+  # - target:
+  #     group: tekton.dev
+  #     version: v1beta1
+  #     kind: PipelineRun
+  #     name: build-and-rollout
+  #   path: 02-pipelinerun-patch.yaml
