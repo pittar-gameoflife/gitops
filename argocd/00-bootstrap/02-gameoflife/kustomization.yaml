@@ -4,6 +4,5 @@ kind: Kustomization
 namespace: argocd
 
 resources:
-  - 01-cicd.yaml
-  - 02-dev.yaml
-  - 03-test.yaml
+  - 01-bootstrap-project.yaml
+  - 02-bootstrap-app.yaml

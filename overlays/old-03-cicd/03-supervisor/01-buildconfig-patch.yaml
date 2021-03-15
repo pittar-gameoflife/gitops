@@ -1,3 +1,0 @@
-- op: replace
-  path: /spec/output/to/name
-  value: 'supervisor-is:latest'
