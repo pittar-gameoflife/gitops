@@ -5,5 +5,5 @@ namespace: argocd
 
 resources:
   - 01-cluster-project.yaml
-  - 02-operators.yaml
-  - 03-cicd-tools.yaml
+  - 02-operators-app.yaml
+  - 03-cicd-tools-app.yaml
