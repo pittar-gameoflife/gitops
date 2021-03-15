@@ -2,7 +2,9 @@
 kind: AppProject
 apiVersion: argoproj.io/v1alpha1
 metadata:
-  name: bootstrap
+  annotations:
+    argocd.argoproj.io/sync-wave: "10"
+  name: cluster-infra
   namespace: argocd
 spec:
   clusterResourceWhitelist:

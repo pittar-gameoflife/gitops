@@ -16,7 +16,7 @@
       <mirror>
         <id>internal-repository</id>
         <name>Internal Nexus Maven Proxy</name>
-        <url>http://nexus:8081/content/groups/public</url>
+        <url>http://nexus.cicd-tools.svc.cluster.local:8081/content/groups/public</url>
         <mirrorOf>external:*</mirrorOf>
       </mirror>
     </mirrors>
@@ -24,8 +24,8 @@
       <profile>
         <id>nexus-internal</id>
         <properties>
-          <repository.snapshots>http://nexus:8081/content/repositories/snapshots</repository.snapshots>
-          <repository.releases>http://nexus:8081/content/repositories/releases</repository.releases>
+          <repository.snapshots>http://nexus.cicd-tools.svc.cluster.local:8081/content/repositories/snapshots</repository.snapshots>
+          <repository.releases>http://nexus.cicd-tools.svc.cluster.local:8081/content/repositories/releases</repository.releases>
         </properties>
         <repositories>
           <repository>

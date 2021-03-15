@@ -3,7 +3,6 @@ kind: Kustomization
 
 # Commont Tekton functionality.
 bases:
-  - github.com/redhat-canada-gitops/catalog/nexus2/base?ref=master
   - ../../../../base/04-cicd/02-custom-tasks
   - ../../../../base/04-cicd/05-pipeline-trigger
 

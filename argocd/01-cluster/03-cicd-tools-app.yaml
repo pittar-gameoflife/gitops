@@ -1,15 +1,17 @@
 kind: Application
 apiVersion: argoproj.io/v1alpha1
 metadata:
-  name: bootstrap
+  annotations:
+    argocd.argoproj.io/sync-wave: "20"
+  name: cicd-tools
   namespace: argocd
 spec:
   destination:
     namespace: argocd
     server: https://kubernetes.default.svc
-  project: bootstrap
+  project: cluster-infra
   source:
-    path: argocd
+    path: overlays/01-cluster/02-cicd-tools
     repoURL: https://github.com/pittar-gameoflife/gitops.git
     targetRevision: master
   syncPolicy:
