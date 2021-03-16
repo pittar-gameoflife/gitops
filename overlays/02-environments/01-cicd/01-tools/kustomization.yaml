@@ -9,6 +9,7 @@ bases:
 # Nexus secret (username and password).
 resources:
   - nexus-secret.yaml
+  - pipeline-serviceaccount.yaml
 
 # Generator options.
 generatorOptions:
