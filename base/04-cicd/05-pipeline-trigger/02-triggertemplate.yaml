@@ -4,34 +4,37 @@ metadata:
   name: build-trigger
 spec:
   params:
-  - name: git-repo-url
-    description: The git repository url
-  - name: git-revision
-    description: The git revision
-    default: master
-  - name: git-repo-name
-    description: The name of the deployment to be created / patched
+    - name: git-repo-url
+      description: The git repository url
+    - name: git-revision
+      description: The git revision
+      default: master
+    - name: git-repo-name
+      description: The name of the deployment to be created / patched
 
   resourcetemplates:
-  - apiVersion: tekton.dev/v1beta1
-    kind: PipelineRun
-    metadata:
-      name: $(tt.params.git-repo-name)-build-and-rollout-$(uid)
-    spec:
-      serviceAccountName: pipeline
-      pipelineRef:
-        name: $(tt.params.git-repo-name)-build-and-rollout
-      params:
-      - name: app-name
-        value: $(tt.params.git-repo-name)
-      - name: git-url
-        value: $(tt.params.git-repo-url)
-      - name: git-revision
-        value: $(tt.params.git-revision)
-      workspaces:
-        - name: shared-workspace
-          persistentVolumeClaim:
-            claimName: $(tt.params.git-repo-name)-workspace
-        - name: maven-settings-cm
-          configMap:
-            name: maven-settings-cm
+    - apiVersion: tekton.dev/v1beta1
+      kind: PipelineRun
+      metadata:
+        annotations:
+          argocd.argoproj.io/compare-options: IgnoreExtraneous
+          argocd.argoproj.io/sync-options: Prune=false
+        name: $(tt.params.git-repo-name)-build-and-rollout-$(uid)
+      spec:
+        serviceAccountName: pipeline
+        pipelineRef:
+          name: $(tt.params.git-repo-name)-build-and-rollout
+        params:
+          - name: app-name
+            value: $(tt.params.git-repo-name)
+          - name: git-url
+            value: $(tt.params.git-repo-url)
+          - name: git-revision
+            value: $(tt.params.git-revision)
+        workspaces:
+          - name: shared-workspace
+            persistentVolumeClaim:
+              claimName: $(tt.params.git-repo-name)-workspace
+          - name: maven-settings-cm
+            configMap:
+              name: maven-settings-cm
