@@ -3,4 +3,4 @@ kind: Kustomization
 resources:
   - 01-oc-binary-build-task.yaml
   - 02-oc-rollout-restart-task.yaml
-
+  - 03-maven36-java11-task.yaml
