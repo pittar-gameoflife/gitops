@@ -51,6 +51,8 @@ spec:
           value: "-DskipTests"
         - name: MAVEN_REPO_CREDS_SECRET
           value: nexus-secret
+        - name: M2_DIRECTORY
+          value: "/tekton/home/.m2"
     # - name: mvn-build
     #   taskRef:
     #     name: maven
