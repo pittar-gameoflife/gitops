@@ -34,20 +34,35 @@ spec:
           value: "true"
         - name: revision
           value: $(params.git-revision)
-    - name: mvn-build
+    - name: build
       taskRef:
         name: maven
-        kind: ClusterTask
-      runAfter:
-        - fetch-repository 
-      params:
-        - name: GOALS
-          value: ["clean", "package", "-DskipTests"]
       workspaces:
         - name: source
           workspace: shared-workspace
         - name: maven-settings
           workspace: maven-settings-cm
+      runAfter:
+        - git-clone
+      params:
+        - name: GOALS
+          value: ["package"]
+        - name: ARGUMENTS
+          value: "-DskipTests"
+    # - name: mvn-build
+    #   taskRef:
+    #     name: maven
+    #     kind: ClusterTask
+    #   runAfter:
+    #     - fetch-repository 
+    #   params:
+    #     - name: GOALS
+    #       value: ["clean", "package", "-DskipTests"]
+    #   workspaces:
+    #     - name: source
+    #       workspace: shared-workspace
+    #     - name: maven-settings
+    #       workspace: maven-settings-cm
     - name: s2i-build
       taskRef:
         name: oc-binary-build
