@@ -49,6 +49,8 @@ spec:
           value: "package"
         - name: ARGUMENTS
           value: "-DskipTests"
+        - name: MAVEN_REPO_CREDS_SECRET
+          value: nexus-secret
     # - name: mvn-build
     #   taskRef:
     #     name: maven
