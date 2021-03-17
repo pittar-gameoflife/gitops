@@ -34,7 +34,7 @@ spec:
           value: "true"
         - name: revision
           value: $(params.git-revision)
-    - name: build
+    - name: mvn-build
       taskRef:
         name: maven
       workspaces:
