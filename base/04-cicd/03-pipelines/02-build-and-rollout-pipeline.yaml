@@ -46,7 +46,7 @@ spec:
         - fetch-repository
       params:
         - name: GOALS
-          value: ["package"]
+          value: "package"
         - name: ARGUMENTS
           value: "-DskipTests"
     # - name: mvn-build
