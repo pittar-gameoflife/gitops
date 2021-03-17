@@ -43,7 +43,7 @@ spec:
         - name: maven-settings
           workspace: maven-settings-cm
       runAfter:
-        - git-clone
+        - fetch-repository
       params:
         - name: GOALS
           value: ["package"]
