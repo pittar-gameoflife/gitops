@@ -46,4 +46,7 @@ oc create -f first-builds
 ```
 # Once Nexus, OpenShift Pipelines and AMQ Streams Operator are installed...
 oc apply -k argocd/00-bootstrap
+
+# Kick off the initial buils.
+oc create -f first-builds
 ```
