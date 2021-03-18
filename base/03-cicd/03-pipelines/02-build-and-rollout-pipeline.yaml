@@ -34,28 +34,10 @@ spec:
           value: "true"
         - name: revision
           value: $(params.git-revision)
-    # - name: mvn-build
-    #   taskRef:
-    #     name: maven
-    #   workspaces:
-    #     - name: source
-    #       workspace: shared-workspace
-    #     - name: maven-settings
-    #       workspace: maven-settings-cm
-    #   runAfter:
-    #     - fetch-repository
-    #   params:
-    #     - name: GOALS
-    #       value: "package"
-    #     - name: ARGUMENTS
-    #       value: "-DskipTests"
-    #     - name: MAVEN_REPO_CREDS_SECRET
-    #       value: nexus-secret
-    #     - name: M2_DIRECTORY
-    #       value: "/tekton/home/.m2"
     - name: mvn-build
       taskRef:
         name: maven
+        kind: Task
       runAfter:
         - fetch-repository 
       params:
@@ -70,14 +52,14 @@ spec:
           workspace: maven-settings-cm
     - name: s2i-build
       taskRef:
-        name: oc-binary-build
+        name: binary-build
         kind: Task
       runAfter:
         - mvn-build 
       params:
-        - name: build-name
+        - name: BUILD_NAME
           value: "$(params.app-name)-binary-build"
-        - name: binary-relative-path
+        - name: BINARY_PATH
           value: "/target/app-runner.jar"
       workspaces:
         - name: build-workspace
@@ -93,14 +75,14 @@ spec:
           value: ["tag", "$(params.app-name)-app:latest", "$(params.app-name)-app:dev"]
     - name: rollout-dev
       taskRef:
-        name: oc-rollout-restart
+        name: rollout-restart
         kind: Task
       runAfter:
         - tag-dev
       params:
-        - name: app-name
+        - name: APP_NAME
           value: "$(params.app-name)"
-        - name: namespace
+        - name: NAMESPACE
           value: "gameoflife-dev"
     - name: tag-test
       taskRef:
@@ -113,12 +95,12 @@ spec:
           value: ["tag", "$(params.app-name)-app:dev", "$(params.app-name)-app:test"]
     - name: rollout-test
       taskRef:
-        name: oc-rollout-restart
+        name: rollout-restart
         kind: Task
       runAfter:
         - tag-test
       params:
-        - name: app-name
+        - name: APP_NAME
           value: "$(params.app-name)"
-        - name: namespace
+        - name: NAMESPACE
           value: "gameoflife-test"
