@@ -34,39 +34,40 @@ spec:
           value: "true"
         - name: revision
           value: $(params.git-revision)
-    - name: mvn-build
-      taskRef:
-        name: maven
-      workspaces:
-        - name: source
-          workspace: shared-workspace
-        - name: maven-settings
-          workspace: maven-settings-cm
-      runAfter:
-        - fetch-repository
-      params:
-        - name: GOALS
-          value: "package"
-        - name: ARGUMENTS
-          value: "-DskipTests"
-        - name: MAVEN_REPO_CREDS_SECRET
-          value: nexus-secret
-        - name: M2_DIRECTORY
-          value: "/tekton/home/.m2"
     # - name: mvn-build
     #   taskRef:
     #     name: maven
-    #     kind: ClusterTask
-    #   runAfter:
-    #     - fetch-repository 
-    #   params:
-    #     - name: GOALS
-    #       value: ["clean", "package", "-DskipTests"]
     #   workspaces:
     #     - name: source
     #       workspace: shared-workspace
     #     - name: maven-settings
     #       workspace: maven-settings-cm
+    #   runAfter:
+    #     - fetch-repository
+    #   params:
+    #     - name: GOALS
+    #       value: "package"
+    #     - name: ARGUMENTS
+    #       value: "-DskipTests"
+    #     - name: MAVEN_REPO_CREDS_SECRET
+    #       value: nexus-secret
+    #     - name: M2_DIRECTORY
+    #       value: "/tekton/home/.m2"
+    - name: mvn-build
+      taskRef:
+        name: maven
+      runAfter:
+        - fetch-repository 
+      params:
+        - name: GOALS
+          value: ["package", "-DskipTests"]
+        - name: MAVEN_REPO_CONFIG_SECRET
+          value: nexus-secret
+      workspaces:
+        - name: source
+          workspace: shared-workspace
+        - name: maven-settings
+          workspace: maven-settings-cm
     - name: s2i-build
       taskRef:
         name: oc-binary-build
