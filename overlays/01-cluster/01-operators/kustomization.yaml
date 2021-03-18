@@ -6,4 +6,4 @@ namespace: openshift-operators
 
 # Base directory has the operators available.
 bases:
-  - ../../base/01-operators
+  - ../../../base/01-operators
