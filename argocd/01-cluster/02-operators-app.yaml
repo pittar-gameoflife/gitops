@@ -11,7 +11,7 @@ spec:
     server: https://kubernetes.default.svc
   project: cluster-infra
   source:
-    path: overlays/01-cluster/02-operators
+    path: overlays/01-cluster/01-operators
     repoURL: https://github.com/pittar-gameoflife/gitops.git
     targetRevision: master
   syncPolicy:
