@@ -7,8 +7,8 @@ namePrefix:
 
 # Use common BuildConfigs, ImageStreams, and Tekton resources.
 bases:
-  - ../../../base/04-cicd/01-builds-images
-  - ../../../base/04-cicd/03-pipelines
+  - ../../../base/03-cicd/01-builds-images
+  - ../../../base/03-cicd/03-pipelines
 
 # Common labels to add to all resources.
 commonLabels:
