@@ -1,7 +1,7 @@
 apiVersion: triggers.tekton.dev/v1alpha1
 kind: TriggerBinding
 metadata:
-  name: build-trigger
+  name: build-triggerbinding
 spec:
   params:
   - name: git-repo-url

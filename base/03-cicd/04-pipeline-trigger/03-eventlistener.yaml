@@ -5,8 +5,8 @@ metadata:
 spec:
   serviceAccountName: pipeline
   triggers:
-    - name: build-trigger
+    - name: build-listener-webhook
       bindings:
-        - ref: build-trigger
+        - ref: build-triggerbinding
       template:
-        name: build-trigger
+        name: build-triggertemplate

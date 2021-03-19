@@ -4,8 +4,8 @@ metadata:
   labels:
     app.kubernetes.io/managed-by: EventListener
     app.kubernetes.io/part-of: Triggers
-    eventLister: build-trigger
-  name: build-trigger
+    eventLister: build-listener
+  name: build-listener-route
 spec:
   port:
     targetPort: http-listener
