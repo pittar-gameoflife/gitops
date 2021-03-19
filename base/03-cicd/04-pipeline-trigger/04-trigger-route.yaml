@@ -8,7 +8,7 @@ metadata:
   name: build-listener-route
 spec:
   port:
-    targetPort: http-listener
+    targetPort: listener
   to:
     kind: Service
     name: el-build-listener
