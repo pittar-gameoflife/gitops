@@ -32,7 +32,7 @@ spec:
     spec:
       containers:
       - image: supervisor:latest
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         name: supervisor
         ports:
         - containerPort: 8080

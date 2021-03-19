@@ -32,7 +32,7 @@ spec:
     spec:
       containers:
       - image: web-ui:latest
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         name: web-ui
         ports:
         - containerPort: 8080
