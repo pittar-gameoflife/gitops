@@ -11,5 +11,5 @@ spec:
     targetPort: http-listener
   to:
     kind: Service
-    name: el-build-trigger
+    name: el-build-listener
     weight: 100
